@@ -87,8 +87,10 @@ def do_lambda_form(expressions, env):
     validate_form(expressions, 2)
     formals = expressions.first
     validate_formals(formals)
-    # BEGIN PROBLEM 7
-    "*** YOUR CODE HERE ***"
+    # # BEGIN PROBLEM 7
+    # if expressions:
+    body = expressions.rest
+    return LambdaProcedure(formals, body, env)
     # END PROBLEM 7
 
 
