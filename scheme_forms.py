@@ -163,6 +163,14 @@ def do_or_form(expressions, env):
     # BEGIN PROBLEM 12
     if not expressions:
         return False
+    while expressions.rest != nil:
+        if is_scheme_true(scheme_eval(expressions.first, env)):
+            return scheme_eval(expressions.first,env)
+        if expressions.rest:
+            expressions = expressions.rest
+            continue
+        break
+    return scheme_eval(expressions.first, env)
     # END PROBLEM 12
 
 
