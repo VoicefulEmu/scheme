@@ -191,7 +191,19 @@ def do_cond_form(expressions, env):
             test = scheme_eval(clause.first, env)
         if is_scheme_true(test):
             # BEGIN PROBLEM 13
-            "*** YOUR CODE HERE ***"
+            if clause.rest == nil:
+                return test
+            if clause.rest:
+                if type(clause.rest.first) == int:
+                    return clause.rest.first
+                else:
+                    if type(clause.rest) == Pair :
+                        return eval_all(clause.rest,env)
+                    return scheme_eval(clause.rest,env)
+            else:
+                return scheme_eval(clause.first,env)
+            
+            
             # END PROBLEM 13
         expressions = expressions.rest
 
