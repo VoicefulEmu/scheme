@@ -16,7 +16,8 @@
         ((null? s)
          nil)
         (else
-         (cons (cons n (cons (car s) nil)) (helper (cdr s) (+ n 1))))))
+         (cons (cons n (cons (car s) nil))
+               (helper (cdr s) (+ n 1))))))
     (helper s 0)))
 
 (enumerate '(3 4 5 6))
@@ -27,7 +28,23 @@
 ; ; the merged lists.
 (define (merge inorder? list1 list2)
   ; BEGIN PROBLEM 16
-  'replace-this-line)
+  (cond 
+    ((null? list1)
+     list2)
+    ((null? list2)
+     list1)
+    (else
+     (cond 
+       ((inorder? (car list1) (car list2))
+        (cons (car list1)
+              (cons (car list2)
+                    (merge inorder? (cdr list1) (cdr list2)))))
+       (else
+        (cons (car list2)
+              (cons (car list1)
+                    (merge inorder? (cdr list1) (cdr list2)))))))))
+
+(merge < '(1 4 6) '(2 5 8))
 
 ; END PROBLEM 16
 ; ; Optional Problem 1
